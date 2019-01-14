@@ -1,5 +1,4 @@
 export function throttle(callback, scope, limit = 100, options = {}) {
-
     options = {
         leading: true,
         trailing: false,
@@ -23,7 +22,6 @@ export function throttle(callback, scope, limit = 100, options = {}) {
     }, limit + limit * 0.15);
 
     return function dothrottle() {
-
         if (!wait && !skip) {
             callback.apply(scope, arguments);
             wait = true;
@@ -33,8 +31,7 @@ export function throttle(callback, scope, limit = 100, options = {}) {
                     later.apply(scope, arguments);
                 }
             }, limit);
-        }
-        else if (!wait && skip) {
+        } else if (!wait && skip) {
             wait = true;
             setTimeout(() => {
                 skip = false;
@@ -59,6 +56,9 @@ export function debounce(func, wait, immediate) {
             if (!immediate) {
                 func.apply(context, args);
             }
+        };
+        const cancel = function cancel() {
+            clearTimeout(timeout);
         };
 
         const callNow = immediate && !timeout;
