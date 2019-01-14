@@ -211,10 +211,10 @@ var FixedHeader = function (_Component) {
         key: "componentDidUpdate",
         value: function componentDidUpdate() {
             if (!this.updateFunc) {
-                this.updateFunc = (0, _throttle.debounce)(this.getScrollWidth, 200);
+                this._debounceHandle = this.updateFunc = (0, _throttle.debounce)(this.getScrollWidth, 200);
             }
 
-            this.updateFunc();
+            this._debounceHandle = this.updateFunc();
         }
     }, {
         key: "componentWillUnmount",
@@ -227,8 +227,8 @@ var FixedHeader = function (_Component) {
                 delete this._scrollListener;
             }
 
-            if (this.updateFunc) {
-                this.updateFunc.cancel();
+            if (this._debounceHandle) {
+                clearTimeout(this._debounceHandle);
             }
         }
     }]);
