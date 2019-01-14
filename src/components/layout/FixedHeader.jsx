@@ -177,10 +177,13 @@ class FixedHeader extends Component {
 
     componentDidUpdate() {
         if (!this.updateFunc) {
-            this.updateFunc = debounce(this.getScrollWidth, 200);
+            this._debounceHandle = this.updateFunc = debounce(
+                this.getScrollWidth,
+                200
+            );
         }
 
-        this.updateFunc();
+        this._debounceHandle = this.updateFunc();
     }
 
     componentWillUnmount() {
@@ -195,8 +198,8 @@ class FixedHeader extends Component {
             delete this._scrollListener;
         }
 
-        if (this.updateFunc) {
-            this.updateFunc.cancel();
+        if (this._debounceHandle) {
+            clearTimeout(this._debounceHandle);
         }
     }
 
