@@ -129,9 +129,7 @@ var FixedHeader = function (_Component) {
                 tableClassName = (0, _prefix.prefix)(CLASS_NAMES.TABLE, CLASS_NAMES.HEADER_FIXED, stuck ? CLASS_NAMES.HEADER_STUCK : '', stuckToBottom ? CLASS_NAMES.HEADER_STUCK_BOTTOM : '');
             }
 
-            var fillerCmp = stuck || stuckToBottom ? _react2.default.createElement('div', {
-                style: { height: (this.HEADER_HEIGHT || 25) + 'px' }
-            }) : null;
+            var fillerCmp = stuck || stuckToBottom ? _react2.default.createElement('div', { style: { height: (this.HEADER_HEIGHT || 25) + 'px' } }) : null;
 
             if (stuck || stuckToBottom) {
                 tableStyle.width = width + 'px';
@@ -212,7 +210,6 @@ var FixedHeader = function (_Component) {
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate() {
-
             if (!this.updateFunc) {
                 this.updateFunc = (0, _throttle.debounce)(this.getScrollWidth, 200);
             }
@@ -228,6 +225,10 @@ var FixedHeader = function (_Component) {
 
             if (this._scrollListener) {
                 delete this._scrollListener;
+            }
+
+            if (this.updateFunc) {
+                this.updateFunc.cancel();
             }
         }
     }]);
@@ -270,7 +271,6 @@ var FixedHeader = function (_Component) {
     }, {
         key: 'createScrollListener',
         value: function createScrollListener(config, headerDOM) {
-
             var scope = this;
             var target = config.scrollTarget ? document.querySelector(config.scrollTarget) : document;
 
@@ -390,9 +390,7 @@ var addEmptyInsert = exports.addEmptyInsert = function addEmptyInsert(headers, v
 
 
     if (visibleColumns.length === 0) {
-
         if (GRID_ACTIONS && GRID_ACTIONS.menu && GRID_ACTIONS.menu.length > 0) {
-
             headers.unshift(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: 'empty-header' }));
         } else {
             headers.push(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: 'empty-header' }));
@@ -400,15 +398,11 @@ var addEmptyInsert = exports.addEmptyInsert = function addEmptyInsert(headers, v
     }
 
     if (headerOffset !== undefined) {
-        headers.push(_react2.default.createElement('th', {
-            key: 'colum-adjuster',
-            style: { width: headerOffset + 'px' }
-        }));
+        headers.push(_react2.default.createElement('th', { key: 'colum-adjuster', style: { width: headerOffset + 'px' } }));
     }
 };
 
 var handleDrag = exports.handleDrag = function handleDrag(scope, columns, id, columnManager, store, nextColumnKey, stateKey, stateful, reactEvent) {
-
     var header = reactEvent.target.parentElement.parentElement;
     var columnNode = reactEvent.target.parentElement;
     var headerNextElementSibling = columnNode.nextElementSibling;
