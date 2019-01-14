@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -7,37 +7,37 @@ exports.handleDrag = exports.addEmptyInsert = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
+var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _Column = require('./header/Column');
+var _Column = require("./header/Column");
 
-var _EmptyHeader = require('./header/EmptyHeader');
+var _EmptyHeader = require("./header/EmptyHeader");
 
-var _DragAndDropManager = require('../core/draganddrop/DragAndDropManager');
+var _DragAndDropManager = require("../core/draganddrop/DragAndDropManager");
 
 var _DragAndDropManager2 = _interopRequireDefault(_DragAndDropManager);
 
-var _shouldComponentUpdate = require('../../util/shouldComponentUpdate');
+var _shouldComponentUpdate = require("../../util/shouldComponentUpdate");
 
-var _prefix = require('../../util/prefix');
+var _prefix = require("../../util/prefix");
 
-var _throttle = require('../../util/throttle');
+var _throttle = require("../../util/throttle");
 
-var _isPluginEnabled = require('../../util/isPluginEnabled');
+var _isPluginEnabled = require("../../util/isPluginEnabled");
 
-var _GridConstants = require('../../constants/GridConstants');
+var _GridConstants = require("../../constants/GridConstants");
 
-var _GridActions = require('../../actions/GridActions');
+var _GridActions = require("../../actions/GridActions");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -61,7 +61,7 @@ var FixedHeader = function (_Component) {
     _inherits(FixedHeader, _Component);
 
     _createClass(FixedHeader, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             var _this2 = this;
 
@@ -107,7 +107,7 @@ var FixedHeader = function (_Component) {
                     dragAndDropManager: dragAndDropManager,
                     filterFields: filterFields,
                     index: i,
-                    key: 'fixed-header-' + i,
+                    key: "fixed-header-" + i,
                     pageSize: pageSize,
                     pager: pager,
                     scope: _this2,
@@ -119,30 +119,30 @@ var FixedHeader = function (_Component) {
             });
 
             var tableStyle = {};
-            var tableClassName = (0, _prefix.prefix)(CLASS_NAMES.TABLE, CLASS_NAMES.HEADER_FIXED, stuck ? CLASS_NAMES.HEADER_STUCK : '', stuckToBottom ? CLASS_NAMES.HEADER_STUCK_BOTTOM : '');
+            var tableClassName = (0, _prefix.prefix)(CLASS_NAMES.TABLE, CLASS_NAMES.HEADER_FIXED, stuck ? CLASS_NAMES.HEADER_STUCK : "", stuckToBottom ? CLASS_NAMES.HEADER_STUCK_BOTTOM : "");
 
             if (classes.length > 0) {
                 classes.forEach(function (cls) {
-                    tableClassName += ' ' + cls;
+                    tableClassName += " " + cls;
                 });
             } else {
-                tableClassName = (0, _prefix.prefix)(CLASS_NAMES.TABLE, CLASS_NAMES.HEADER_FIXED, stuck ? CLASS_NAMES.HEADER_STUCK : '', stuckToBottom ? CLASS_NAMES.HEADER_STUCK_BOTTOM : '');
+                tableClassName = (0, _prefix.prefix)(CLASS_NAMES.TABLE, CLASS_NAMES.HEADER_FIXED, stuck ? CLASS_NAMES.HEADER_STUCK : "", stuckToBottom ? CLASS_NAMES.HEADER_STUCK_BOTTOM : "");
             }
 
-            var fillerCmp = stuck || stuckToBottom ? _react2.default.createElement('div', { style: { height: (this.HEADER_HEIGHT || 25) + 'px' } }) : null;
+            var fillerCmp = stuck || stuckToBottom ? _react2.default.createElement("div", { style: { height: (this.HEADER_HEIGHT || 25) + "px" } }) : null;
 
             if (stuck || stuckToBottom) {
-                tableStyle.width = width + 'px';
-                tableStyle.bottom = bottom + 'px';
+                tableStyle.width = width + "px";
+                tableStyle.bottom = bottom + "px";
             }
 
-            var theadClassName = (0, _prefix.prefix)(CLASS_NAMES.THEADER, headerOffset > 0 ? 'adjusted' : '');
+            var theadClassName = (0, _prefix.prefix)(CLASS_NAMES.THEADER, headerOffset > 0 ? "adjusted" : "");
 
             if (selectionModel) {
                 selectionModel.updateCells({
                     cells: headers,
-                    rowId: 'fixedHeader',
-                    type: 'header',
+                    rowId: "fixedHeader",
+                    type: "header",
                     index: 0,
                     reducerKeys: reducerKeys,
                     stateKey: stateKey,
@@ -154,8 +154,8 @@ var FixedHeader = function (_Component) {
             columnManager.addActionColumn({
                 columns: columns,
                 cells: headers,
-                type: 'header',
-                id: 'header-row',
+                type: "header",
+                id: "header-row",
                 reducerKeys: reducerKeys,
                 stateKey: stateKey,
                 stateful: stateful,
@@ -164,39 +164,39 @@ var FixedHeader = function (_Component) {
 
             addEmptyInsert(headers, visibleColumns, plugins, headerOffset);
 
-            var containerClassName = (0, _prefix.prefix)(CLASS_NAMES.HEADER_FIXED_CONTAINER, headerHidden ? 'hidden' : '');
+            var containerClassName = (0, _prefix.prefix)(CLASS_NAMES.HEADER_FIXED_CONTAINER, headerHidden ? "hidden" : "");
 
             return _react2.default.createElement(
-                'div',
+                "div",
                 { className: containerClassName },
                 fillerCmp,
                 _react2.default.createElement(
-                    'table',
+                    "table",
                     {
                         cellSpacing: 0,
                         className: tableClassName,
                         style: tableStyle
                     },
                     _react2.default.createElement(
-                        'thead',
+                        "thead",
                         { className: theadClassName },
                         _react2.default.createElement(
-                            'tr',
+                            "tr",
                             { className: (0, _prefix.prefix)(CLASS_NAMES.HEADER) },
                             headers
                         )
                     ),
-                    _react2.default.createElement('tbody', null)
+                    _react2.default.createElement("tbody", null)
                 )
             );
         }
     }, {
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var plugins = this.props.plugins;
 
 
-            var isSticky = (0, _isPluginEnabled.isPluginEnabled)(plugins, 'STICKY_HEADER');
+            var isSticky = (0, _isPluginEnabled.isPluginEnabled)(plugins, "STICKY_HEADER");
 
             var headerDOM = _reactDom2.default.findDOMNode(this);
             var tableHeight = headerDOM.parentNode.clientHeight;
@@ -208,7 +208,7 @@ var FixedHeader = function (_Component) {
             }
         }
     }, {
-        key: 'componentDidUpdate',
+        key: "componentDidUpdate",
         value: function componentDidUpdate() {
             if (!this.updateFunc) {
                 this.updateFunc = (0, _throttle.debounce)(this.getScrollWidth, 200);
@@ -217,10 +217,10 @@ var FixedHeader = function (_Component) {
             this.updateFunc();
         }
     }, {
-        key: 'componentWillUnmount',
+        key: "componentWillUnmount",
         value: function componentWillUnmount() {
             if (this.scrollTarget) {
-                this.scrollTarget.removeEventListener('scroll', this._scrollListener);
+                this.scrollTarget.removeEventListener("scroll", this._scrollListener);
             }
 
             if (this._scrollListener) {
@@ -249,13 +249,13 @@ var FixedHeader = function (_Component) {
     }
 
     _createClass(FixedHeader, [{
-        key: 'setWidthResetListener',
+        key: "setWidthResetListener",
         value: function setWidthResetListener(headerDOM) {
             var _this3 = this;
 
             var scope = this;
 
-            window.addEventListener('resize', function () {
+            window.addEventListener("resize", function () {
                 var _state2 = _this3.state,
                     stuck = _state2.stuck,
                     stuckToBottom = _state2.stuckToBottom;
@@ -269,7 +269,7 @@ var FixedHeader = function (_Component) {
             });
         }
     }, {
-        key: 'createScrollListener',
+        key: "createScrollListener",
         value: function createScrollListener(config, headerDOM) {
             var scope = this;
             var target = config.scrollTarget ? document.querySelector(config.scrollTarget) : document;
@@ -331,10 +331,10 @@ var FixedHeader = function (_Component) {
 
             this.scrollTarget = target;
 
-            this.scrollTarget.addEventListener('scroll', this._scrollListener);
+            this.scrollTarget.addEventListener("scroll", this._scrollListener);
         }
     }, {
-        key: 'getScrollWidth',
+        key: "getScrollWidth",
         value: function getScrollWidth() {
             var _gridConfig2 = (0, _GridConstants.gridConfig)(),
                 CLASS_NAMES = _gridConfig2.CLASS_NAMES;
@@ -343,8 +343,8 @@ var FixedHeader = function (_Component) {
             var headerOffset = this.state.headerOffset;
 
 
-            var fixed = header.querySelector('.' + (0, _prefix.prefix)(CLASS_NAMES.HEADER_FIXED));
-            var hidden = header.parentNode.querySelector('.' + (0, _prefix.prefix)(CLASS_NAMES.HEADER_HIDDEN));
+            var fixed = header.querySelector("." + (0, _prefix.prefix)(CLASS_NAMES.HEADER_FIXED));
+            var hidden = header.parentNode.querySelector("." + (0, _prefix.prefix)(CLASS_NAMES.HEADER_HIDDEN));
 
             if (!fixed || !hidden) {
                 return;
@@ -391,14 +391,14 @@ var addEmptyInsert = exports.addEmptyInsert = function addEmptyInsert(headers, v
 
     if (visibleColumns.length === 0) {
         if (GRID_ACTIONS && GRID_ACTIONS.menu && GRID_ACTIONS.menu.length > 0) {
-            headers.unshift(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: 'empty-header' }));
+            headers.unshift(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: "empty-header" }));
         } else {
-            headers.push(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: 'empty-header' }));
+            headers.push(_react2.default.createElement(_EmptyHeader.EmptyHeader, { key: "empty-header" }));
         }
     }
 
     if (headerOffset !== undefined) {
-        headers.push(_react2.default.createElement('th', { key: 'colum-adjuster', style: { width: headerOffset + 'px' } }));
+        headers.push(_react2.default.createElement("th", { key: "colum-adjuster", style: { width: headerOffset + "px" } }));
     }
 };
 
@@ -457,27 +457,27 @@ var _temp = function () {
         return;
     }
 
-    __REACT_HOT_LOADER__.register(arrayOf, 'arrayOf', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(arrayOf, "arrayOf", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(bool, 'bool', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(bool, "bool", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(number, 'number', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(number, "number", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(object, 'object', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(object, "object", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(string, 'string', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(string, "string", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(oneOfType, 'oneOfType', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(oneOfType, "oneOfType", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(dragAndDropManager, 'dragAndDropManager', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(dragAndDropManager, "dragAndDropManager", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(FixedHeader, 'FixedHeader', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(FixedHeader, "FixedHeader", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(addEmptyInsert, 'addEmptyInsert', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(addEmptyInsert, "addEmptyInsert", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(handleDrag, 'handleDrag', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(handleDrag, "handleDrag", "src/components/layout/FixedHeader.jsx");
 
-    __REACT_HOT_LOADER__.register(_default, 'default', 'src/components/layout/FixedHeader.jsx');
+    __REACT_HOT_LOADER__.register(_default, "default", "src/components/layout/FixedHeader.jsx");
 }();
 
 ;

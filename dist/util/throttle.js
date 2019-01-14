@@ -12,7 +12,6 @@ function throttle(callback, scope) {
     var limit = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
     var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
 
-
     options = _extends({
         leading: true,
         trailing: false
@@ -36,7 +35,6 @@ function throttle(callback, scope) {
 
     return function dothrottle() {
         var _arguments = arguments;
-
 
         if (!wait && !skip) {
             callback.apply(scope, arguments);
@@ -72,6 +70,9 @@ function debounce(func, wait, immediate) {
             if (!immediate) {
                 func.apply(context, args);
             }
+        };
+        var cancel = function cancel() {
+            clearTimeout(timeout);
         };
 
         var callNow = immediate && !timeout;
