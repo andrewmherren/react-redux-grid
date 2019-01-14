@@ -1,5 +1,7 @@
 dist/
 demo/lib/bundle.js
+*.sublime-workspace
+*.sublime-project
 
 # Created by https://www.gitignore.io/api/node,osx
 
